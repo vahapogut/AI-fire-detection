@@ -1,96 +1,90 @@
-# 🔥 FIRE GUARD AI - Yapay Zeka Destekli Yangın Tespit Sistemi
+# 🔥 Fire Guard AI / Yapay Zeka Yangın Tespit Sistemi
 
-**Fire Guard AI**, geleneksel yangın sensörlerinin yetersiz kaldığı durumlar için geliştirilmiş, gerçek zamanlı görüntü işleme ve yapay zeka kullanan ileri seviye bir yangın ve duman tespit sistemidir.
+**Fire Guard AI** is an advanced fire and smoke detection system designed to provide 24/7 protection using real-time computer vision and artificial intelligence.
 
-Bu proje, güvenlik kameralarından (IP, RTSP, USB) alınan görüntüleri saniyeler içinde analiz eder, yangın veya duman tespit ettiğinde anında uyarı verir ve belirlenen kanallar (Telegram, E-posta) üzerinden bildirim gönderir.
+**Fire Guard AI**, gerçek zamanlı görüntü işleme ve yapay zeka kullanarak 7/24 koruma sağlayan ileri seviye bir yangın ve duman tespit sistemidir.
 
-## 🚀 Özellikler
+## 🚀 Features / Özellikler
 
-*   **🛡️ Gerçek Zamanlı Tespit:** YOLOv8 modeli ile milisaniyeler içinde yangın ve duman tespiti.
-*   **📸 Çoklu Kamera Desteği:** Sınırsız sayıda kamera (Webcam, RTSP, IP Kamera) ekleme ve aynı anda izleme (Grid Görünümü).
-*   **🧠 Arka Plan Koruması:** Web arayüzü kapalı olsa bile arka planda çalışan servis sayesinde 7/24 kesintisiz izleme.
-*   **🔔 Anlık Bildirimler:**
-    *   **Telegram:** Olay anının fotoğrafıyla birlikte doğrudan telefonunuza bildirim.
-    *   **E-posta:** Detaylı durum raporu ve fotoğraf içeren e-posta gönderimi.
-*   **📊 İstatistik ve Geçmiş:**
-    *   Günlük/Haftalık olay grafikleri.
-    *   Geçmiş olayların arşivlenmesi ve fotoğraf kanıtlarının saklanması.
-*   **⚙️ Kolay Yönetim:** Kullanıcı dostu arayüz üzerinden kamera ekleme/çıkarma ve bildirim ayarlarını yapılandırma.
+*   **🛡️ Real-Time Detection:** Instant fire and smoke detection using the YOLOv8 AI model.
+*   **📸 Multi-Camera Support:** Monitor unlimited cameras (Webcam, RTSP, IP Camera) simultaneously in a grid view.
+*   **🧠 Background Service:** Continuous protection running in the background, even when the web interface is closed.
+*   **🔔 Instant Notifications:**
+    *   **Telegram:** Receive real-time photos of the detected event directly to your phone.
+    *   **Email:** Detailed incident reports sent to your inbox.
+*   **📊 Stats & History:** Daily/Weekly charts and a searchable archive of past events with snapshots.
+*   **⚙️ Easy Management:** User-friendly interface to manage cameras and configure notification settings.
 
-## 🛠️ Teknolojiler
+## 🛠️ Tech Stack / Teknolojiler
 
 *   **Backend:** Python, FastAPI, OpenCV, Ultralytics (YOLOv8), SQLite
 *   **Frontend:** Next.js, React, Tailwind CSS, Recharts
-*   **Yapay Zeka:** YOLOv8 (Yangın ve Duman eğitimi yapılmış özel model)
+*   **AI Model:** Custom trained YOLOv8 for Fire & Smoke
 
-## 📦 Kurulum
+## 📦 Installation / Kurulum
 
-Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin.
+Follow these steps to run the project locally. / Projeyi yerel makinenizde çalıştırmak için aşağıdaki adımları izleyin.
 
-### Ön Gereksinimler
-*   Python 3.9 veya üzeri
-*   Node.js 18 veya üzeri
+### Prerequisites / Ön Gereksinimler
+*   Python 3.9+
+*   Node.js 18+
 *   Git
 
-### 1. Projeyi Klonlayın
+### 1. Clone the Repository / Projeyi Klonlayın
 ```bash
-git clone https://github.com/kullaniciadi/fire-guard-ai.git
-cd fire-guard-ai
+git clone https://github.com/vahapogut/Yapay-Zeka-Yang-n-Tespiti.git
+cd Yapay-Zeka-Yang-n-Tespiti
 ```
 
-### 2. Backend Kurulumu
-Backend servisi görüntü işleme ve veritabanı işlemlerini yürütür.
+### 2. Backend Setup / Backend Kurulumu
+The backend handles video processing and AI inference.
 
 ```bash
 cd backend
-# Sanal ortam oluşturun (Önerilen)
+# Create virtual environment (Recommended)
 python -m venv venv
-# Windows için aktivasyon:
+# Activate on Windows:
 venv\Scripts\activate
-# Mac/Linux için aktivasyon:
+# Activate on Mac/Linux:
 # source venv/bin/activate
 
-# Gerekli paketleri yükleyin
+# Install dependencies
 pip install -r requirements.txt
 
-# Uygulamayı başlatın
+# Start the server
 python main.py
 ```
-*Backend varsayılan olarak `http://localhost:8000` adresinde çalışır.*
-
-### 3. Frontend Kurulumu
-Kullanıcı arayüzü için:
-
+*Backend runs at `http://localhost:8000` by default.*
 ```bash
 cd frontend
-# Paketleri yükleyin
+# Install packages
 npm install
 
-# Uygulamayı başlatın
+# Start the application
 npm run dev
 ```
-*Frontend varsayılan olarak `http://localhost:3000` adresinde çalışır.*
+*Frontend runs at `http://localhost:3000` by default.*
 
-## 🖥️ Kullanım
+## 🖥️ Usage / Kullanım
 
-1.  Tarayıcınızda `http://localhost:3000` adresine gidin.
-2.  **Kamera Ekle** butonuna tıklayarak kaynak ekleyin:
-    *   Webcam için: `0` veya `1`
-    *   IP Kamera için: `rtsp://kullanici:sifre@ip_adresi:554/stream`
-3.  **Ayarlar** menüsünden Telegram ve E-posta bilgilerinizi girin ve sistemi test edin.
-4.  Sistem artık aktif! Bir ateş veya duman gördüğünde sizi uyaracaktır.
+1.  Open `http://localhost:3000` in your browser.
+2.  Click **Add Camera** to add a source:
+    *   For Webcam: `0` or `1`
+    *   For IP Cam: `rtsp://user:password@ip_address:554/stream`
+3.  Go to **Settings** to configure Telegram and Email credentials.
+4.  The system is now active! It will alert you upon detecting fire or smoke.
 
-## 🤝 Katkıda Bulunma
+## 🤝 Contributing / Katkıda Bulunma
 
-1.  Bu depoyu Fork'layın.
-2.  Yeni bir özellik dalı (branch) oluşturun (`git checkout -b ozellik/YeniOzellik`).
-3.  Değişikliklerinizi commit edin (`git commit -m 'Yeni özellik eklendi'`).
-4.  Dalınızı Push edin (`git push origin ozellik/YeniOzellik`).
-5.  Bir Pull Request oluşturun.
+1.  Fork this repository.
+2.  Create a feature branch (`git checkout -b feature/NewFeature`).
+3.  Commit your changes (`git commit -m 'Add new feature'`).
+4.  Push to the branch (`git push origin feature/NewFeature`).
+5.  Open a Pull Request.
 
-## 📄 Lisans
+## 📄 License / Lisans
 
-Bu proje MIT Lisansı ile lisanslanmıştır. Detaylar için `LICENSE` dosyasına bakınız.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
-*Geliştirici: Vahap - Fire Guard AI Project*
+*Developer: Abdulvahap Öğüt*
