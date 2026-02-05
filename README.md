@@ -32,8 +32,8 @@ Follow these steps to run the project locally. / Projeyi yerel makinenizde çal�
 
 ### 1. Clone the Repository / Projeyi Klonlayın
 ```bash
-git clone https://github.com/vahapogut/Yapay-Zeka-Yang-n-Tespiti.git
-cd Yapay-Zeka-Yang-n-Tespiti
+git clone https://github.com/vahapogut/AI-fire-detection.git
+cd AI-fire-detection
 ```
 
 ### 2. Backend Setup / Backend Kurulumu
