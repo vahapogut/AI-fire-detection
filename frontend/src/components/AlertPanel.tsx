@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 // Define types
 export interface Alert {
@@ -17,6 +18,7 @@ interface AlertPanelProps {
 }
 
 const AlertPanel = ({ alerts, error }: AlertPanelProps) => {
+  const { t } = useLanguage();
   const [isSoundEnabled, setIsSoundEnabled] = useState(false);
   const [selectedSnapshot, setSelectedSnapshot] = useState<string | null>(null);
 
@@ -37,8 +39,8 @@ const AlertPanel = ({ alerts, error }: AlertPanelProps) => {
     return (
       <div className="flex flex-col h-full bg-gray-900/50 backdrop-blur-xl border border-white/5 rounded-2xl overflow-hidden p-4 items-center justify-center text-center">
         <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse mb-2" />
-        <h3 className="text-sm font-bold text-white">Sistem Başlatılıyor...</h3>
-        <p className="text-xs text-gray-500 mt-1">Backend bağlantısı bekleniyor</p>
+        <h3 className="text-sm font-bold text-white">{t.common.loading}</h3>
+        <p className="text-xs text-gray-500 mt-1">{t.common.waitingBackend}</p>
       </div>
     );
   }
@@ -57,9 +59,9 @@ const AlertPanel = ({ alerts, error }: AlertPanelProps) => {
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
-            <img src={`http://localhost:8000${selectedSnapshot}`} alt="Olay Görüntüsü" className="w-full h-auto" />
+            <img src={`http://localhost:8000${selectedSnapshot}`} alt="Event Snapshot" className="w-full h-auto" />
             <div className="p-4 bg-black/50 absolute bottom-0 w-full backdrop-blur-md">
-              <p className="text-white text-sm font-medium">Olay Anı Görüntüsü</p>
+              <p className="text-white text-sm font-medium">{t.common.snapshotView}</p>
             </div>
           </div>
         </div>
@@ -68,10 +70,10 @@ const AlertPanel = ({ alerts, error }: AlertPanelProps) => {
       <div className="p-4 border-b border-white/5 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <h3 className="text-lg font-bold text-white tracking-wide">
-            Sistem Bildirimleri
+            {t.alerts.title}
           </h3>
           <span className="text-xs font-mono text-gray-500">
-            {alerts.length} Olay
+            {alerts.length} {t.alerts.event}
           </span>
         </div>
         <button
@@ -81,7 +83,7 @@ const AlertPanel = ({ alerts, error }: AlertPanelProps) => {
               ? "bg-white/10 text-white hover:bg-white/20" 
               : "text-gray-500 hover:text-white hover:bg-white/5"
           }`}
-          title={isSoundEnabled ? "Sesi Kapat" : "Sesi Aç"}
+          title={isSoundEnabled ? t.common.mute : t.common.unmute}
         >
           {isSoundEnabled ? (
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -102,9 +104,9 @@ const AlertPanel = ({ alerts, error }: AlertPanelProps) => {
       <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar min-h-0">
         {alerts.length === 0 ? (
           <div className="text-center text-gray-500 py-10 text-sm">
-            Henüz bir tespit yok.
+            {t.common.noDetections}
             <br />
-            Sistem normal.
+            {t.common.systemNormal}
           </div>
         ) : (
           alerts.map((alert, idx) => (
@@ -125,7 +127,7 @@ const AlertPanel = ({ alerts, error }: AlertPanelProps) => {
               <div className="flex-1">
                 <div className="flex justify-between items-start">
                   <h4 className="text-sm font-semibold text-white capitalize">
-                    {alert.type === "fire" ? "Yangın Tespiti" : alert.type === "smoke" ? "Duman Tespiti" : `${alert.type} Tespiti`}
+                    {alert.type === "fire" ? t.alerts.fireDetected : alert.type === "smoke" ? t.alerts.smokeDetected : `${alert.type} ${t.alerts.event}`}
                   </h4>
                   <span className="text-xs text-gray-500 font-mono">
                     {alert.timestamp}
@@ -133,12 +135,12 @@ const AlertPanel = ({ alerts, error }: AlertPanelProps) => {
                 </div>
                 <div className="flex items-center justify-between mt-1">
                   <p className="text-xs text-white/60">
-                    Güven Oranı: %{(alert.confidence * 100).toFixed(1)}
+                    {t.alerts.confidence}: %{(alert.confidence * 100).toFixed(1)}
                   </p>
                   {alert.snapshot && (
                     <span className="text-[10px] text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
                       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                      Görüntüle
+                      {t.history.viewSnapshot}
                     </span>
                   )}
                 </div>

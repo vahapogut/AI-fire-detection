@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import {
   LineChart,
   Line,
@@ -19,6 +20,7 @@ interface Stat {
 }
 
 const StatsChart = () => {
+  const { t } = useLanguage();
   const [data, setData] = useState<Stat[]>([]);
 
   useEffect(() => {
@@ -44,14 +46,14 @@ const StatsChart = () => {
     return (
       <div className="flex flex-col h-full items-center justify-center text-gray-500 text-sm gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
-        <span>Henüz istatistik verisi yok</span>
+        <span>{t.stats.noData}</span>
       </div>
     );
   }
 
   return (
     <div className="w-full h-full p-2">
-      <h3 className="text-white text-sm font-semibold mb-4">Haftalık Aktivite</h3>
+      <h3 className="text-white text-sm font-semibold mb-4">{t.stats.weeklyActivity}</h3>
       <div className="h-[200px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface Camera {
   id: number;
@@ -9,6 +10,7 @@ interface Camera {
 }
 
 const CameraGrid = () => {
+  const { t } = useLanguage();
   const [cameras, setCameras] = useState<Camera[]>([]);
   const [isAdding, setIsAdding] = useState(false);
   const [newCamSource, setNewCamSource] = useState("");
@@ -42,47 +44,47 @@ const CameraGrid = () => {
       setNewCamName("");
       fetchCameras();
     } catch (e) {
-      alert("Kamera eklenemedi");
+      alert("Failed to add camera");
     }
   };
 
   const handleDeleteCamera = async (id: number) => {
-    if(!confirm("Kamerayı silmek istediğinize emin misiniz?")) return;
+    if(!confirm(t.camera.confirmDelete)) return;
     try {
       await fetch(`http://localhost:8000/cameras/${id}`, { method: "DELETE" });
       fetchCameras();
     } catch (e) {
-      alert("Silinemedi");
+      alert("Failed to delete");
     }
   };
 
   return (
     <div className="h-full flex flex-col">
        <div className="flex justify-between items-center mb-4 px-2">
-         <h2 className="text-white font-bold">Aktif Kameralar ({cameras.length})</h2>
+         <h2 className="text-white font-bold">{t.camera.activeCameras} ({cameras.length})</h2>
          <button 
            onClick={() => setIsAdding(true)}
            className="px-3 py-1 bg-blue-600 hover:bg-blue-500 rounded text-xs text-white transition-colors"
          >
-           + Kamera Ekle
+           + {t.camera.addCamera}
          </button>
        </div>
 
        {/* Add Camera Form */}
        {isAdding && (
          <div className="mb-4 p-4 bg-gray-900 border border-white/10 rounded-xl space-y-3 animate-in slide-in-from-top-2">
-            <h3 className="text-sm text-white font-medium">Yeni Kamera Ekle</h3>
+            <h3 className="text-sm text-white font-medium">{t.camera.addCamera}</h3>
             <div className="grid grid-cols-2 gap-2">
               <input 
                 type="text" 
-                placeholder="Kamera Adı (Örn: Giriş)" 
+                placeholder={t.camera.cameraName} 
                 className="bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-xs outline-none focus:border-blue-500"
                 value={newCamName}
                 onChange={(e) => setNewCamName(e.target.value)}
               />
               <input 
                 type="text" 
-                placeholder="Kaynak (0, 1, rtsp://...)" 
+                placeholder={t.camera.cameraSource}
                 className="bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-xs outline-none focus:border-blue-500"
                 value={newCamSource}
                 onChange={(e) => setNewCamSource(e.target.value)}
@@ -93,13 +95,13 @@ const CameraGrid = () => {
                 onClick={() => setIsAdding(false)}
                 className="px-3 py-1 text-gray-400 hover:text-white text-xs"
               >
-                İptal
+                {t.camera.cancel}
               </button>
               <button 
                 onClick={handleAddCamera}
                 className="px-3 py-1 bg-green-600 hover:bg-green-500 text-white rounded text-xs"
               >
-                Kaydet
+                {t.settings.save}
               </button>
             </div>
          </div>
@@ -113,7 +115,7 @@ const CameraGrid = () => {
                <button 
                 onClick={() => handleDeleteCamera(cam.id)}
                 className="absolute top-2 right-2 z-10 p-1 bg-red-500/80 text-white rounded hover:bg-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
-                title="Kamerayı Sil"
+                title={t.camera.deleteVideo}
                >
                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                </button>
