@@ -6,9 +6,19 @@
 
 ## 🚀 Features / Özellikler
 
+### 📸 Dashboard / Kontrol Paneli
+![Dashboard](docs/screenshots/dashboard.png)
+*Gerçek zamanlı çoklu kamera takibi ve olay bildirim paneli.*
+
 *   **🛡️ Real-Time Detection:** Instant fire and smoke detection using the YOLOv8 AI model.
 *   **📸 Multi-Camera Support:** Monitor unlimited cameras (Webcam, RTSP, IP Camera) simultaneously in a grid view.
 *   **🧠 Background Service:** Continuous protection running in the background, even when the web interface is closed.
+
+### 🔔 Notification Settings / Bildirim Ayarları
+| E-posta Ayarları | Telegram Ayarları |
+| :---: | :---: |
+| ![Email Settings](docs/screenshots/settings-email.png) | ![Telegram Settings](docs/screenshots/settings-telegram.png) |
+
 *   **🔔 Instant Notifications:**
     *   **Telegram:** Receive real-time photos of the detected event directly to your phone.
     *   **Email:** Detailed incident reports sent to your inbox.
