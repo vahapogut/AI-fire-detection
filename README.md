@@ -8,7 +8,7 @@
 
 ### 📸 Dashboard / Kontrol Paneli
 ![Dashboard](docs/screenshots/dashboard.png)
-*Gerçek zamanlı çoklu kamera takibi ve olay bildirim paneli.*
+*Real-time multi-camera monitoring and event notification panel.*
 
 
 *   **🛡️ Real-Time Detection:** Instant fire and smoke detection using the YOLOv8 AI model.
@@ -22,7 +22,7 @@
 
 ### 📜 Event History / Geçmiş Kayıtları
 ![History](docs/screenshots/history.png)
-*Geçmiş olayların detaylı listesi ve anlık görüntüleri.*
+*Detailed list of past events and snapshots.*
 
 *   **🔔 Instant Notifications:**
     *   **Telegram:** Receive real-time photos of the detected event directly to your phone.
