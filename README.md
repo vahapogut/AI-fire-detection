@@ -11,9 +11,9 @@
 *Real-time multi-camera monitoring and event notification panel.*
 
 
-*   ** Real-Time Detection:** Instant fire and smoke detection using the YOLOv8 AI model.
-*   ** Multi-Camera Support:** Monitor unlimited cameras (Webcam, RTSP, IP Camera) simultaneously in a grid view.
-*   ** Background Service:** Continuous protection running in the background, even when the web interface is closed.
+*   **Real-Time Detection:** Instant fire and smoke detection using the YOLOv8 AI model.
+*   **Multi-Camera Support:** Monitor unlimited cameras (Webcam, RTSP, IP Camera) simultaneously in a grid view.
+*   **Background Service:** Continuous protection running in the background, even when the web interface is closed.
 
 ###  Notification Settings / Bildirim Ayarları
 | E-posta Ayarları | Telegram Ayarları |
@@ -24,11 +24,11 @@
 ![History](docs/screenshots/history.png)
 *Detailed list of past events and snapshots.*
 
-*   ** Instant Notifications:**
+*   **Instant Notifications:**
     *   **Telegram:** Receive real-time photos of the detected event directly to your phone.
     *   **Email:** Detailed incident reports sent to your inbox.
-*   ** Stats & History:** Daily/Weekly charts and a searchable archive of past events with snapshots.
-*   ** Easy Management:** User-friendly interface to manage cameras and configure notification settings.
+*   **Stats & History:** Daily/Weekly charts and a searchable archive of past events with snapshots.
+*   **Easy Management:** User-friendly interface to manage cameras and configure notification settings.
 
 ##  Tech Stack / Teknolojiler
 
