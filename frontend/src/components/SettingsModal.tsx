@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { API_URL } from '../config';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -43,7 +44,7 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
 
   const fetchSettings = async () => {
     try {
-      const res = await fetch("http://localhost:8000/settings");
+      const res = await fetch(`${API_URL}/settings`);
       if (res.ok) {
         const json = await res.json();
         setSettings(prev => ({ ...prev, ...json.settings }));
@@ -67,7 +68,7 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
     try {
       // Save all settings one by one
       for (const [key, value] of Object.entries(settings)) {
-        await fetch("http://localhost:8000/settings", {
+        await fetch(`${API_URL}/settings`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ key, value })
@@ -85,7 +86,7 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
     setLoading(true);
     setMessage(null);
     try {
-      const res = await fetch("http://localhost:8000/test-notification", { method: "POST" });
+      const res = await fetch(`${API_URL}/test-notification`, { method: "POST" });
       const json = await res.json();
       if (res.ok) {
           setMessage({ text: t.settings.testSent, type: 'success' });

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { API_URL } from '../config';
 
 interface Camera {
   id: number;
@@ -21,7 +22,7 @@ const CameraGrid = () => {
 
   const fetchCameras = async () => {
     try {
-      const res = await fetch("http://localhost:8000/cameras");
+      const res = await fetch(`${API_URL}/cameras`);
       if (!res.ok) throw new Error("Backend responded with error");
       const data = await res.json();
       setCameras(data.cameras);
@@ -43,7 +44,7 @@ const CameraGrid = () => {
     if (!newCamSource) return;
     
     try {
-      await fetch("http://localhost:8000/cameras", {
+      await fetch(`${API_URL}/cameras`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ source: newCamSource, name: newCamName || `Kamera ${cameras.length + 1}` })
@@ -60,7 +61,7 @@ const CameraGrid = () => {
   const handleDeleteCamera = async (id: number) => {
     if(!confirm(t.camera.confirmDelete)) return;
     try {
-      await fetch(`http://localhost:8000/cameras/${id}`, { method: "DELETE" });
+      await fetch(`${API_URL}/cameras/${id}`, { method: "DELETE" });
       fetchCameras();
     } catch (e) {
       alert("Failed to delete");
@@ -69,7 +70,7 @@ const CameraGrid = () => {
 
   const handleToggleCamera = async (id: number, active: boolean) => {
     try {
-      await fetch(`http://localhost:8000/cameras/${id}/toggle?active=${active}`, {
+      await fetch(`${API_URL}/cameras/${id}/toggle?active=${active}`, {
         method: "POST"
       });
       fetchCameras();
@@ -196,7 +197,7 @@ const CameraGrid = () => {
                 </div>
               ) : (
                 <img 
-                  src={`http://localhost:8000/video_feed/${cam.id}`} 
+                  src={`${API_URL}/video_feed/${cam.id}`} 
                   alt={cam.name}
                   className="w-full h-full object-cover"
                 />

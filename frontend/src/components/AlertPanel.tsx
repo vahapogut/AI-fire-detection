@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { API_URL } from "../config";
 
 // Define types
 export interface Alert {
@@ -26,7 +27,7 @@ const AlertPanel = ({ alerts, error }: AlertPanelProps) => {
   useEffect(() => {
     const fetchSoundSetting = async () => {
       try {
-        const res = await fetch("http://localhost:8000/settings");
+        const res = await fetch(`${API_URL}/settings`);
         if (res.ok) {
           const json = await res.json();
           if (json.settings && json.settings.alarm_sound_enabled !== undefined) {
@@ -61,7 +62,7 @@ const AlertPanel = ({ alerts, error }: AlertPanelProps) => {
     const nextVal = !isSoundEnabled;
     setIsSoundEnabled(nextVal);
     try {
-      await fetch("http://localhost:8000/settings", {
+      await fetch(`${API_URL}/settings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ key: "alarm_sound_enabled", value: nextVal ? "true" : "false" })
@@ -95,7 +96,7 @@ const AlertPanel = ({ alerts, error }: AlertPanelProps) => {
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
-            <img src={`http://localhost:8000${selectedSnapshot}`} alt="Event Snapshot" className="w-full h-auto" />
+            <img src={`${API_URL}${selectedSnapshot}`} alt="Event Snapshot" className="w-full h-auto" />
             <div className="p-4 bg-black/50 absolute bottom-0 w-full backdrop-blur-md">
               <p className="text-white text-sm font-medium">{t.common.snapshotView}</p>
             </div>

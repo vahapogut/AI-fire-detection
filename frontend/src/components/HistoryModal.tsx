@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { API_URL } from '../config';
 
 interface Event {
   id: number;
@@ -31,7 +32,7 @@ const HistoryModal = ({ isOpen, onClose }: HistoryModalProps) => {
   const fetchHistory = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8000/history?limit=100");
+      const res = await fetch(`${API_URL}/history?limit=100`);
       if (res.ok) {
         const json = await res.json();
         setEvents(json.events);
@@ -118,7 +119,7 @@ const HistoryModal = ({ isOpen, onClose }: HistoryModalProps) => {
                 <div className="space-y-4 w-full">
                   <div className="rounded-lg overflow-hidden border border-white/10 shadow-lg">
                     <img 
-                      src={`http://localhost:8000${selectedSnapshot}`} 
+                      src={`${API_URL}${selectedSnapshot}`} 
                       alt="Preview" 
                       className="w-full h-auto object-cover"
                     />

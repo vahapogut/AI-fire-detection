@@ -7,6 +7,7 @@ import HistoryModal from "@/components/HistoryModal";
 import SettingsModal from "@/components/SettingsModal";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { API_URL, WS_URL } from "@/config";
 
 export default function Home() {
   const { t, language, setLanguage } = useLanguage();
@@ -19,7 +20,7 @@ export default function Home() {
     // 1. Initial HTTP fetch for recent alerts
     const fetchAlerts = async () => {
       try {
-        const res = await fetch("http://localhost:8000/alerts");
+        const res = await fetch(`${API_URL}/alerts`);
         if (!res.ok) throw new Error("Backend unavailable");
         const data = await res.json();
         setAlerts(data.alerts);
@@ -36,7 +37,7 @@ export default function Home() {
     let reconnectTimeout: any = null;
 
     const connectWebSocket = () => {
-      ws = new WebSocket("ws://localhost:8000/ws/alerts");
+      ws = new WebSocket(`${WS_URL}/ws/alerts`);
 
       ws.onopen = () => {
         console.log("[WebSocket] Connected to FastAPI backend!");

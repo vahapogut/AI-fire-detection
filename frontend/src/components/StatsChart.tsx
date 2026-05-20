@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { API_URL } from '../config';
 import {
   LineChart,
   Line,
@@ -26,7 +27,7 @@ const StatsChart = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch("http://localhost:8000/stats");
+        const res = await fetch(`${API_URL}/stats`);
         if (res.ok) {
           const json = await res.json();
           setData(json.stats);
