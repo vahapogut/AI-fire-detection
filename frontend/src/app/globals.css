@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #ededed;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom Scrollbar - Global Override */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333333 #050505;
+}
+
+/* Webkit Browsers (Chrome, Edge, Safari) */
+*::-webkit-scrollbar {
+  width: 6px; /* Thinner */
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #050505; 
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #333333; 
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555555; 
+}
