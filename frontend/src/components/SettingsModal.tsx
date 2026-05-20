@@ -130,7 +130,7 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
             onClick={() => setActiveTab('ai')}
             className={`flex-1 py-3 text-sm font-medium transition-colors ${activeTab === 'ai' ? 'bg-white/5 text-white border-b-2 border-amber-500' : 'text-gray-400 hover:text-white'}`}
           >
-            Yapay Zeka (AI)
+            AI Settings
           </button>
         </div>
 
@@ -225,12 +225,12 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                   onChange={handleChange}
                   className="w-4 h-4 rounded bg-gray-800 border-gray-600 text-amber-500 focus:ring-amber-500 cursor-pointer"
                 />
-                <label htmlFor="alarm_sound_enabled" className="text-white text-sm font-medium cursor-pointer">Siren Sesli Alarmı Etkinleştir</label>
+                <label htmlFor="alarm_sound_enabled" className="text-white text-sm font-medium cursor-pointer">Enable Siren Sound Alarm</label>
               </div>
 
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <label className="text-xs text-gray-400 font-medium">Yapay Zeka Güven Oranı (Confidence Threshold)</label>
+                  <label className="text-xs text-gray-400 font-medium">AI Confidence Threshold</label>
                   <span className="text-xs font-mono font-bold text-amber-400">%{Math.round(parseFloat(settings.ai_confidence_threshold || "0.25") * 100)}</span>
                 </div>
                 <input 
@@ -244,14 +244,14 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                   className="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500" 
                 />
                 <div className="flex justify-between text-[10px] text-gray-500 font-medium">
-                  <span>%10 (Daha Hassas)</span>
-                  <span>%90 (Daha Kararlı)</span>
+                  <span>10% (More Sensitive)</span>
+                  <span>90% (More Stable)</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4 pt-2">
                 <div className="space-y-2">
-                  <label className="text-xs text-gray-400 font-medium">Doğrulama Kare Sayısı (Persistence)</label>
+                  <label className="text-xs text-gray-400 font-medium">Verification Frame Count (Persistence)</label>
                   <input 
                     type="number" 
                     name="ai_persistence_frames" 
@@ -261,11 +261,11 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                     onChange={handleChange} 
                     className="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-amber-500 outline-none" 
                   />
-                  <p className="text-[10px] text-gray-500">Nesnenin alarm tetiklenmeden önce kaç kare boyunca tespit edilmesi gerektiği.</p>
+                  <p className="text-[10px] text-gray-500">Number of consecutive frames the object must be detected before triggering an alarm.</p>
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-xs text-gray-400 font-medium">Alarm Cooldown Süresi (Saniye)</label>
+                  <label className="text-xs text-gray-400 font-medium">Alarm Cooldown (Seconds)</label>
                   <input 
                     type="number" 
                     name="ai_cooldown_seconds" 
@@ -275,7 +275,7 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                     onChange={handleChange} 
                     className="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white text-sm focus:border-amber-500 outline-none" 
                   />
-                  <p className="text-[10px] text-gray-500">Aynı kamerada ardışık iki olay bildirimi arasında geçecek minimum süre.</p>
+                  <p className="text-[10px] text-gray-500">Minimum time in seconds between two consecutive event notifications for the same camera.</p>
                 </div>
               </div>
             </div>

@@ -1,10 +1,9 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext } from "react";
 import { en } from "../locales/en";
-import { tr } from "../locales/tr";
 
-type Language = "en" | "tr";
+type Language = "en";
 type Translations = typeof en;
 
 interface LanguageContextType {
@@ -16,41 +15,12 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("en");
-
-  useEffect(() => {
-    const loadSettings = async () => {
-      try {
-        const res = await fetch("http://localhost:8000/settings");
-        if (res.ok) {
-          const settings = await res.json();
-          // Backend keys might match what we save. 
-          // We will use 'system_language' key for backend storage to avoid conflict if any
-          if (settings.system_language) {
-            setLanguage(settings.system_language as Language);
-          }
-        }
-      } catch (error) {
-        console.error("Failed to load language settings", error);
-      }
-    };
-    loadSettings();
-  }, []);
-
-  const handleSetLanguage = async (lang: Language) => {
-    setLanguage(lang);
-    try {
-      await fetch("http://localhost:8000/settings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ key: "system_language", value: lang }),
-      });
-    } catch (error) {
-      console.error("Failed to save language setting", error);
-    }
+  const language: Language = "en";
+  const handleSetLanguage = (lang: Language) => {
+    // No-op, system is locked to English
   };
 
-  const t = language === "tr" ? tr : en;
+  const t = en;
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>

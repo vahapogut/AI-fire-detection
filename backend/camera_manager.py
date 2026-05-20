@@ -10,7 +10,7 @@ if not os.path.exists(SNAPSHOT_DIR):
     os.makedirs(SNAPSHOT_DIR)
 
 class Camera:
-    def __init__(self, id, source, name="Kamera", is_active=True):
+    def __init__(self, id, source, name="Camera", is_active=True):
         self.id = id
         self.source = source
         self.name = name
@@ -127,7 +127,7 @@ class CameraManager:
         except Exception as e:
             print(f"Error loading cameras from database: {e}")
 
-    def add_camera(self, source, name="Kamera"):
+    def add_camera(self, source, name="Camera"):
         """Add a new camera source to database and memory."""
         import database
         cam_id = database.add_db_camera(name, source, 1)

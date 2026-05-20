@@ -83,8 +83,8 @@ const CameraGrid = () => {
       <div className="w-full h-full flex flex-col items-center justify-center bg-[#050505] text-gray-400 text-sm gap-3 py-10 min-h-[300px]">
         <div className="w-8 h-8 border-2 border-red-500/20 border-t-red-500 rounded-full animate-spin"></div>
         <div className="flex flex-col items-center gap-1">
-          <span className="font-semibold text-white">Sistem Başlatılıyor</span>
-          <span className="text-xs text-gray-500">Yapay Zeka sunucusu ile bağlantı kuruluyor, lütfen bekleyin...</span>
+          <span className="font-semibold text-white">System Initializing</span>
+          <span className="text-xs text-gray-500">Connecting to AI server, please wait...</span>
         </div>
       </div>
     );
@@ -178,7 +178,7 @@ const CameraGrid = () => {
                    cam.status === 'connecting' ? 'bg-yellow-500 animate-bounce' : 'bg-red-500 animate-pulse'
                  }`}></div>
                  <span className="text-[10px] font-semibold text-white/90 tracking-wide font-mono">
-                   {cam.name} {!cam.is_active ? '(Pasif)' : cam.status === 'connecting' ? '(Bağlanıyor...)' : cam.status === 'disconnected' ? '(Koptu)' : ''}
+                   {cam.name} {!cam.is_active ? '(Inactive)' : cam.status === 'connecting' ? '(Connecting...)' : cam.status === 'disconnected' ? '(Disconnected)' : ''}
                  </span>
               </div>
 
@@ -186,13 +186,13 @@ const CameraGrid = () => {
               {!cam.is_active ? (
                 <div className="w-full h-full flex flex-col items-center justify-center bg-gray-950 text-gray-500 text-xs gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-40"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>
-                  <span className="font-medium font-sans">Kamera Pasif Durumda</span>
+                  <span className="font-medium font-sans">Camera is Inactive</span>
                 </div>
               ) : cam.status === 'disconnected' ? (
                 <div className="w-full h-full flex flex-col items-center justify-center bg-red-950/20 border border-red-500/10 text-red-400 text-xs gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-55 animate-pulse"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                  <span className="font-semibold tracking-wide uppercase text-[10px]">Bağlantı Koptu</span>
-                  <span className="text-[10px] text-gray-500">Yeniden bağlanılıyor...</span>
+                  <span className="font-semibold tracking-wide uppercase text-[10px]">Connection Lost</span>
+                  <span className="text-[10px] text-gray-500">Reconnecting...</span>
                 </div>
               ) : (
                 <img 

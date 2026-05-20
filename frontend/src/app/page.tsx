@@ -111,29 +111,6 @@ export default function Home() {
             {t.header.history}
           </button>
 
-          {/* Language Selector */}
-          <div className="hidden md:flex items-center relative group">
-             <button className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-white/10 rounded-lg border border-white/5 transition-colors text-sm font-medium uppercase font-mono">
-               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-               {language}
-             </button>
-             {/* Dropdown menu */}
-             <div className="absolute top-full right-0 mt-2 w-24 bg-[#0a0a0a] border border-white/10 rounded-lg overflow-hidden flex flex-col shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                <button 
-                  onClick={() => setLanguage('en')}
-                  className={`px-4 py-2 text-left text-sm hover:bg-white/10 transition-colors ${language === 'en' ? 'text-white font-bold bg-white/5' : 'text-gray-400'}`}
-                >
-                  EN
-                </button>
-                <button 
-                  onClick={() => setLanguage('tr')}
-                  className={`px-4 py-2 text-left text-sm hover:bg-white/10 transition-colors ${language === 'tr' ? 'text-white font-bold bg-white/5' : 'text-gray-400'}`}
-                >
-                  TR
-                </button>
-             </div>
-          </div>
-          
           <div className="hidden md:flex items-center gap-2 px-3 py-1 bg-green-500/10 rounded-full border border-green-500/20">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             <span className="text-xs font-semibold text-green-400">{t.header.systemActive}</span>

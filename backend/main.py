@@ -12,7 +12,7 @@ import cv2
 import asyncio
 import time
 
-app = FastAPI(title="Yapay Zeka Yangın Tespit Sistemi")
+app = FastAPI(title="AI Fire Detection System")
 
 # Initialize database
 database.init_db()
@@ -81,7 +81,7 @@ async def startup_event():
 
 @app.get("/")
 def read_root():
-    return {"status": "ok", "message": "Yangın Tespit Sistemi API Çalışıyor"}
+    return {"status": "ok", "message": "Fire Detection System API is running"}
 
 def generate_camera_stream(camera_id):
     """Generator for camera stream with CPU protection sleep."""

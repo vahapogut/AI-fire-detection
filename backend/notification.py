@@ -93,9 +93,9 @@ def trigger_notifications(event_type, confidence, snapshot_path=None):
         print("Notification skipped due to cooldown.")
         return
 
-    confidence_percent = f"%{confidence * 100:.1f}"
-    subject = f"ACİL DURUM: {event_type.upper()} Tespit Edildi!"
-    body = f"UYARI!\n\nSistem {confidence_percent} güven oranıyla {event_type} tespit etti.\nZaman: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\nLütfen kontrol ediniz."
+    confidence_percent = f"{confidence * 100:.1f}%"
+    subject = f"EMERGENCY: {event_type.upper()} Detected!"
+    body = f"WARNING!\n\nThe system detected {event_type} with {confidence_percent} confidence.\nTime: {time.strftime('%Y-%m-%d %H:%M:%S')}\n\nPlease check the dashboard immediately."
     
     # Threading could be added here to not block the main loop, 
     # but for now synchronous call is safer to ensure delivery log visibility.

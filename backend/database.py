@@ -48,8 +48,12 @@ def init_db():
         cursor.execute('''
         INSERT INTO cameras (name, source, is_active, created_at)
         VALUES (?, ?, ?, ?)
-        ''', ("Kamera 1", "0", 1, now_str))
+        ''', ("Camera 1", "0", 1, now_str))
         conn.commit()
+    
+    # Migrate existing camera names from Turkish to English
+    cursor.execute("UPDATE cameras SET name = 'Camera 1' WHERE name = 'Kamera 1'")
+    conn.commit()
 
     # Seed default AI settings if not exist
     default_settings = {
