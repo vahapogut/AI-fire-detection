@@ -2,6 +2,11 @@
 
 Fire Guard AI is an advanced fire and smoke detection system designed to provide 24/7 protection using real-time computer vision and artificial intelligence.
 
+### Live Demo
+Experience the live dashboard: [https://ai-fire-detection-drab.vercel.app/](https://ai-fire-detection-drab.vercel.app/)
+
+[![Dashboard Live Demo](docs/screenshots/dashboard.png)](https://ai-fire-detection-drab.vercel.app/)
+
 ## Features
 
 ### Real-Time Detection
