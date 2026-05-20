@@ -17,14 +17,18 @@ const CameraGrid = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [newCamSource, setNewCamSource] = useState("");
   const [newCamName, setNewCamName] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const fetchCameras = async () => {
     try {
       const res = await fetch("http://localhost:8000/cameras");
+      if (!res.ok) throw new Error("Backend responded with error");
       const data = await res.json();
       setCameras(data.cameras);
+      setLoading(false);
     } catch (e) {
-      console.error("Failed to fetch cameras");
+      // Quietly wait for backend to start without spamming console.error
+      setLoading(true);
     }
   };
 
@@ -73,6 +77,18 @@ const CameraGrid = () => {
       alert("Failed to toggle camera status");
     }
   };
+
+  if (loading) {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center bg-[#050505] text-gray-400 text-sm gap-3 py-10 min-h-[300px]">
+        <div className="w-8 h-8 border-2 border-red-500/20 border-t-red-500 rounded-full animate-spin"></div>
+        <div className="flex flex-col items-center gap-1">
+          <span className="font-semibold text-white">Sistem Başlatılıyor</span>
+          <span className="text-xs text-gray-500">Yapay Zeka sunucusu ile bağlantı kuruluyor, lütfen bekleyin...</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="h-full flex flex-col">
