@@ -3,23 +3,25 @@ echo Starting AI Fire Detection System...
 
 :: Detect Python command
 set PYTHON_CMD=
-where python >nul 2>nul
+python --version >nul 2>nul
 if %errorlevel% equ 0 (
     set PYTHON_CMD=python
-) else (
-    where py >nul 2>nul
-    if %errorlevel% equ 0 (
-        set PYTHON_CMD=py
-    ) else (
-        echo.
-        echo [ERROR] Python was not found on your system!
-        echo Please install Python (3.9+) and ensure it is added to your PATH.
-        echo.
-        pause
-        exit /b 1
-    )
+    goto python_found
+)
+py --version >nul 2>nul
+if %errorlevel% equ 0 (
+    set PYTHON_CMD=py
+    goto python_found
 )
 
+echo.
+echo [ERROR] Python was not found on your system!
+echo Please install Python 3.9 or higher and ensure it is added to your PATH.
+echo.
+pause
+exit /b 1
+
+:python_found
 echo Using Python interpreter command: %PYTHON_CMD%
 
 echo Starting Backend (Checking dependencies and Running)...
